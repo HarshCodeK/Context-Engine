@@ -1,0 +1,71 @@
+# Northstar Community Energy
+
+> Long-form parser fixture · fictional programme · revision 1.0
+
+## Programme overview
+
+Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset.
+
+Implementation note: Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Operating model
+
+Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely.
+
+Implementation note: Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Data and measurement
+
+The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard.
+
+Implementation note: The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Financial controls
+
+The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency.
+
+Implementation note: The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Safety and resilience
+
+The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions.
+
+Implementation note: The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Community participation
+
+Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity.
+
+Implementation note: Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Delivery risks
+
+Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible.
+
+Implementation note: Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Service and maintenance
+
+The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language.
+
+Implementation note: The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Governance and reporting
+
+A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition.
+
+Implementation note: A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition. The site lead records evidence, the programme manager checks the control, and the monthly review confirms whether the action remains effective.
+
+## Decision register
+
+| ID | Decision | Owner | Status |
+|---|---|---|---|
+| DEC-001 | Review programme overview controls | Programme manager | Open |
+| DEC-002 | Review operating model controls | Programme manager | Open |
+| DEC-003 | Review data and measurement controls | Programme manager | Open |
+| DEC-004 | Review financial controls controls | Programme manager | Open |
+| DEC-005 | Review safety and resilience controls | Programme manager | Open |
+| DEC-006 | Review community participation controls | Programme manager | Open |
+| DEC-007 | Review delivery risks controls | Programme manager | Open |
+| DEC-008 | Review service and maintenance controls | Programme manager | Open |
+| DEC-009 | Review governance and reporting controls | Programme manager | Open |

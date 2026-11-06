@@ -1,0 +1,1606 @@
+{
+  "schema_version": "1.0",
+  "programme": "Northstar Community Energy",
+  "records": [
+    {
+      "site_id": "NS-0001",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 11.25,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator001@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0002",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 12.5,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator002@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0003",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 13.75,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator003@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0004",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 15.0,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator004@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0005",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 16.25,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator005@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0006",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 17.5,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator006@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0007",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 18.75,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator007@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0008",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 20.0,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator008@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    },
+    {
+      "site_id": "NS-0009",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 21.25,
+        "inverter_count": 1
+      },
+      "status": "maintenance_review",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator009@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset."
+    },
+    {
+      "site_id": "NS-0010",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 22.5,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator010@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0011",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 23.75,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator011@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0012",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 25.0,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator012@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0013",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 26.25,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator013@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0014",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 27.5,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator014@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0015",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 28.75,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator015@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0016",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 30.0,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator016@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0017",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 10.0,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator017@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    },
+    {
+      "site_id": "NS-0018",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 11.25,
+        "inverter_count": 1
+      },
+      "status": "maintenance_review",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator018@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset."
+    },
+    {
+      "site_id": "NS-0019",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 12.5,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator019@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0020",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 13.75,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator020@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0021",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 15.0,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator021@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0022",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 16.25,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator022@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0023",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 17.5,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator023@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0024",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 18.75,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator024@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0025",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 20.0,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator025@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0026",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 21.25,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator026@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    },
+    {
+      "site_id": "NS-0027",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 22.5,
+        "inverter_count": 1
+      },
+      "status": "maintenance_review",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator027@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset."
+    },
+    {
+      "site_id": "NS-0028",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 23.75,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator028@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0029",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 25.0,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator029@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0030",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 26.25,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator030@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0031",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 27.5,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator031@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0032",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 28.75,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator032@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0033",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 30.0,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator033@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0034",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 10.0,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator034@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0035",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 11.25,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator035@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    },
+    {
+      "site_id": "NS-0036",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 12.5,
+        "inverter_count": 1
+      },
+      "status": "maintenance_review",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator036@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset."
+    },
+    {
+      "site_id": "NS-0037",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 13.75,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator037@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0038",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 15.0,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator038@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0039",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 16.25,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator039@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0040",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 17.5,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator040@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0041",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 18.75,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator041@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0042",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 20.0,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator042@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0043",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 21.25,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator043@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0044",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 22.5,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator044@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    },
+    {
+      "site_id": "NS-0045",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 23.75,
+        "inverter_count": 1
+      },
+      "status": "maintenance_review",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator045@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset."
+    },
+    {
+      "site_id": "NS-0046",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 25.0,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator046@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0047",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 26.25,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator047@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0048",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 27.5,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator048@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0049",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 28.75,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator049@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0050",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 30.0,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator050@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0051",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 10.0,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator051@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0052",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 11.25,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator052@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0053",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 12.5,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator053@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    },
+    {
+      "site_id": "NS-0054",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 13.75,
+        "inverter_count": 1
+      },
+      "status": "maintenance_review",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator054@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset."
+    },
+    {
+      "site_id": "NS-0055",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 15.0,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator055@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0056",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 16.25,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator056@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0057",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 17.5,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator057@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0058",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 18.75,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator058@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0059",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 20.0,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator059@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0060",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 21.25,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator060@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0061",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 22.5,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator061@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0062",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 23.75,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator062@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    },
+    {
+      "site_id": "NS-0063",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 25.0,
+        "inverter_count": 1
+      },
+      "status": "maintenance_review",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator063@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset."
+    },
+    {
+      "site_id": "NS-0064",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 26.25,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator064@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0065",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 27.5,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator065@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0066",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 28.75,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator066@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0067",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 30.0,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator067@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0068",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 10.0,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator068@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0069",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 11.25,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator069@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0070",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 12.5,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator070@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0071",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 13.75,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator071@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    },
+    {
+      "site_id": "NS-0072",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 15.0,
+        "inverter_count": 1
+      },
+      "status": "maintenance_review",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator072@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Northstar Community Energy is a fictional cooperative programme designed to make rooftop solar and building efficiency accessible to small organisations. The pilot covers libraries, clinics, community halls and small manufacturers across three districts. The programme combines a transparent procurement framework, local installation partners, a shared maintenance desk and a public performance ledger. Its purpose is not to maximise installed capacity at any cost; it is to deliver dependable savings, safe installations and measurable community benefit over the full operating life of each asset."
+    },
+    {
+      "site_id": "NS-0073",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 16.25,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator073@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Each site begins with a consent-led energy assessment. The survey records the meter arrangement, roof condition, shading, structural constraints, fire access, critical loads and the site's opening hours. A qualified engineer signs off the design before procurement. Installers submit a method statement, insurance evidence, electrical credentials, a commissioning checklist and a named escalation contact. The cooperative retains the as-built diagram, serial numbers, warranty dates and maintenance schedule. Site staff receive a plain-language handover and know how to isolate the system safely."
+    },
+    {
+      "site_id": "NS-0074",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 17.5,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator074@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The measurement plan distinguishes generation, self-consumption, grid import, export, downtime and weather-normalised performance. Meter readings are timestamped in local time and retain their original unit. Missing readings are marked as missing rather than silently interpolated. The monthly report shows the reporting period, data completeness, meter source, calculation method and any corrections. Savings are estimated against a documented baseline and are never presented as guaranteed cash returns. Personal information from staff or visitors is excluded from the public dashboard."
+    },
+    {
+      "site_id": "NS-0075",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 18.75,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator075@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The pilot budget separates survey, design, equipment, installation, grid connection, training, monitoring and contingency. Purchase orders require an approved scope and two-person authorisation above the delegated threshold. Invoices are matched to accepted milestones and commissioning evidence. Variations require a written reason, cost impact, schedule impact and approval before work proceeds. The finance team reconciles grant receipts, cooperative contributions and supplier payments each month. Forecasts show committed cost separately from paid cost and unallocated contingency."
+    },
+    {
+      "site_id": "NS-0076",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 20.0,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator076@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The safety plan covers working at height, electrical isolation, manual handling, weather exposure, fire service access and public protection. Contractors complete a site-specific risk assessment and toolbox briefing before work. The programme pauses work when wind, rain, heat or roof conditions exceed the approved method statement. Critical facilities retain their existing emergency procedures; solar equipment is not described as backup power unless an approved storage and islanding design is installed. Incidents and near misses are logged, reviewed and assigned corrective actions."
+    },
+    {
+      "site_id": "NS-0077",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 21.25,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator077@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Residents and site teams can review the proposed installation, ask questions and request accessible explanations before a site is approved. Engagement records distinguish attendance from consent. The cooperative publishes expected disruption, contact routes, complaint response targets and the process for correcting inaccurate public information. Feedback is grouped by theme and reported without identifying individuals. The programme measures participation across site types and neighbourhoods so that the pilot does not concentrate benefits only in locations with the easiest roofs or strongest administrative capacity."
+    },
+    {
+      "site_id": "NS-0078",
+      "district": "Riverside",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 22.5,
+        "inverter_count": 1
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator078@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "Key risks include delayed grid approvals, roof defects discovered after survey, supplier lead times, incomplete meter data, contractor capacity, extreme weather and changes in grant conditions. Every risk has an owner, likelihood, impact, trigger, mitigation and review date. The project manager escalates risks that threaten safety, statutory compliance or the approved budget. Schedule recovery is not allowed to bypass engineering approval or commissioning checks. Where a site is unsuitable, the decision and evidence are recorded and the site is offered a practical alternative where possible."
+    },
+    {
+      "site_id": "NS-0079",
+      "district": "North",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 23.75,
+        "inverter_count": 2
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator079@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "The maintenance desk triages alarms by safety, generation impact and urgency. Remote monitoring alerts are checked against meter data before a service visit is booked. Technicians record arrival time, fault symptoms, diagnostic steps, parts used, resolution and any follow-up action. Warranty claims retain supplier correspondence and evidence. The cooperative reviews recurring faults quarterly and uses the findings to improve procurement specifications, installer training and preventative maintenance. Sites receive an annual performance summary in accessible language."
+    },
+    {
+      "site_id": "NS-0080",
+      "district": "Central",
+      "asset": {
+        "technology": "rooftop_pv",
+        "capacity_kw": 25.0,
+        "inverter_count": 3
+      },
+      "status": "operational",
+      "contacts": {
+        "role": "site_coordinator",
+        "email": "coordinator080@example.invalid"
+      },
+      "controls": [
+        "commissioning_record",
+        "isolation_label",
+        "warranty_register"
+      ],
+      "notes": "A monthly delivery board reviews cost, schedule, safety, quality, participation, generation and open decisions. Each decision has a named owner, evidence link, date and rationale. The board distinguishes facts, estimates and unresolved assumptions. Public reporting uses aggregated site information and explains exclusions. Independent sampling checks commissioning records and reported energy data. The programme closes the pilot only after outstanding defects, data gaps, training actions and financial reconciliations have an agreed disposition."
+    }
+  ]
+}

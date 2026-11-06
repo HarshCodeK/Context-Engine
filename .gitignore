@@ -1,0 +1,50 @@
+# Python environments, caches and build output
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+
+# Local databases, immutable source blobs, uploads and generated exports
+data/
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.db
+*.db-*
+source_blobs/
+uploads/
+exports/
+artifacts/
+logs/
+*.log
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Frontend dependencies and generated bundles
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+dist/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*.tmp
+*.bak

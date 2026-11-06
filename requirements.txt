@@ -1,0 +1,14 @@
+# Context Studio runtime dependencies (Python 3.11+).
+# Keep this list to packages imported by the application itself.
+fastapi==0.141.1
+uvicorn==0.52.4
+pydantic==2.12.5
+python-multipart==0.0.32
+pymupdf==1.28.2
+python-docx==1.2.0
+python-pptx==1.0.2
+openpyxl==3.1.5
+Pillow==11.3.0
+
+# OCR is optional and uses the Tesseract executable directly; it is not a
+# Python dependency and is deliberately not installed by this project.
