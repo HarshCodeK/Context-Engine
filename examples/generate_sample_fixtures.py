@@ -1,8 +1,8 @@
 """Build substantial, reproducible Context Studio parser fixtures.
 
-All text and tabular examples are original benchmark material for a fictional
-community-energy programme. Image fixtures are intentionally excluded: those
-must come from a real, licensed source rather than synthetic artwork.
+All examples are original benchmark material for a fictional community-energy
+programme. The image fixtures are deliberately synthetic and are intended for
+upload-flow and optional OCR fallback checks, not OCR accuracy benchmarking.
 """
 from __future__ import annotations
 
@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 
 import pymupdf as fitz
+from PIL import Image, ImageDraw, ImageFont
 from docx import Document
 from openpyxl import Workbook
 from pptx import Presentation
@@ -130,8 +131,43 @@ def write_xlsx() -> None:
             sheet.column_dimensions[letter].width = min(48, max(14, max(len(str(cell.value or "")) for cell in column[:30]) + 2))
     book.save(OUT / "northstar-programme.xlsx")
 
+def write_image_fixture() -> None:
+    """Create a synthetic site-inspection image for image/OCR fallback QA."""
+    image = Image.new("RGB", (1600, 1000), "#f2f1ec")
+    draw = ImageDraw.Draw(image)
+    regular = ImageFont.load_default(size=30)
+    small = ImageFont.load_default(size=22)
+    large = ImageFont.load_default(size=58)
+    draw.rectangle((0, 0, 1600, 155), fill="#182a35")
+    draw.text((90, 45), "NORTHSTAR  /  SITE INSPECTION", font=large, fill="#ffffff")
+    draw.text((92, 195), "FICTIONAL TEST DOCUMENT  ·  SITE NS-0042", font=regular, fill="#36505e")
+    draw.text((92, 250), "Riverside Community Hall", font=large, fill="#182a35")
+    draw.text((92, 330), "Inspection date: 14 October 2026     Inspector: Sample Engineering Team", font=small, fill="#42545e")
+
+    # A deliberately simple roof and panel illustration gives the fixture
+    # visual content without introducing a copyrighted or real site photo.
+    draw.polygon([(150, 690), (790, 430), (1435, 690), (1435, 860), (150, 860)], fill="#d5d9d5", outline="#42545e", width=8)
+    draw.polygon([(230, 665), (790, 455), (1350, 665)], fill="#87969a", outline="#42545e", width=8)
+    for row in range(3):
+        for col in range(5):
+            x = 390 + col * 155 - row * 42
+            y = 555 + row * 48
+            draw.rounded_rectangle((x, y, x + 130, y + 38), radius=5, fill="#244b62", outline="#d5e5e9", width=3)
+    draw.rectangle((90, 895, 1510, 965), fill="#e0e8e2")
+    draw.text((120, 912), "ROOF ACCESS: CLEAR     ELECTRICAL ISOLATION: VERIFIED     FOLLOW-UP: NONE", font=small, fill="#234b37")
+    image.save(OUT / "northstar-site-inspection.png", format="PNG", optimize=True, dpi=(180, 180))
+
+    # Embed the same scan as a single-page image-only PDF so the optional OCR
+    # route can be evaluated independently from native-text PDF extraction.
+    pdf = fitz.open()
+    page = pdf.new_page(width=800, height=500)
+    page.insert_image(page.rect, filename=str(OUT / "northstar-site-inspection.png"))
+    pdf.set_metadata({"title": "Northstar Site Inspection Scan — Test Fixture", "author": "Context Studio fixture generator", "subject": "Synthetic image-only PDF for OCR fallback QA"})
+    pdf.save(OUT / "northstar-scanned-inspection.pdf", garbage=4, deflate=True)
+    pdf.close()
+
 def main() -> None:
-    write_text_files(); write_csv(); write_json(); write_html(); write_pdf(); write_docx(); write_pptx(); write_xlsx()
+    write_text_files(); write_csv(); write_json(); write_html(); write_pdf(); write_docx(); write_pptx(); write_xlsx(); write_image_fixture()
     print(f"Generated {len(list(OUT.iterdir()))} long-form fixtures in {OUT}")
     for path in sorted(OUT.iterdir()):
         if path.is_file(): print(f"{path.name}: {path.stat().st_size:,} bytes")

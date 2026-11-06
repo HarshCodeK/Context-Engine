@@ -1,6 +1,7 @@
 # Context Studio runtime dependencies (Python 3.11+).
-# Keep this list to packages imported by the application itself.
+# Pin application runtime dependencies and compatibility-sensitive ASGI components.
 fastapi==0.141.1
+starlette==1.10.0
 uvicorn==0.52.4
 pydantic==2.12.5
 python-multipart==0.0.32

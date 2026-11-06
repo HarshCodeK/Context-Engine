@@ -52,5 +52,15 @@ The product goal, architecture principles, company use cases and staged roadmap 
 - Existing parsers remain ingestion adapters; they are not the product's core differentiator.
 - Document digests remain deterministic extractive artifacts, not semantic AI summaries. Digest substitution may increase or decrease context size depending on the task; no token-saving claim is made.
 - No documents are sent to an external model; no model provider or embedding service is configured.
-- No packages, runtimes, model weights or external services were installed.
+- Project-local Python and npm dependencies were installed from the checked-in manifests; no global Python/npm packages, model weights or hosted services were installed. The optional Tesseract machine installer was cancelled.
 - No global environments, other projects, or user documents were deleted.
+
+## Local handoff readiness
+
+- [x] Provide a repeatable Windows setup path that installs pinned Python runtime dependencies and the lockfile-exact frontend dependency tree; optionally install missing Python/Node machine prerequisites through `winget`.
+- [x] Keep the project `.venv` isolated from global Python packages, repairing older environments that expose system site-packages.
+- [x] Make the run script rebuild the current frontend source before starting the local API/UI, avoiding stale local bundles after branch updates.
+- [x] Keep a synthetic, multi-format document corpus in `examples/fixtures/`, including a PNG and image-only PDF for the optional OCR path.
+- [x] Add a no-code manual acceptance guide for user-run product checks.
+- [x] Add a path-based Git safety guardrail and ignore common local-only data, databases, secrets, dependency folders and build artifacts.
+- [ ] Confirm optional Tesseract installation on this workstation; the winget installer was cancelled (`0x800704c7`), so image fixtures currently exercise the explicit OCR-unavailable path.

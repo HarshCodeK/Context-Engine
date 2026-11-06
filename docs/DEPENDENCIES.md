@@ -16,6 +16,7 @@ Python 3.11 or newer is required. The versions below are pinned in `requirements
 | Package | Version | Purpose |
 | --- | ---: | --- |
 | `fastapi` | 0.141.1 | HTTP API and request validation |
+| `starlette` | 1.10.0 | ASGI toolkit used by FastAPI |
 | `uvicorn` | 0.52.4 | Local ASGI server |
 | `pydantic` | 2.12.5 | Request and context-rule data validation |
 | `python-multipart` | 0.0.32 | Multipart file uploads |
@@ -33,9 +34,9 @@ The backend also uses Python's standard library for SQLite, CSV, HTML, JSON, has
 
 | Package | Version | Purpose |
 | --- | ---: | --- |
-| `httpx` | 0.28.1 | HTTP transport used by FastAPI/Starlette's `TestClient` |
+| `httpx2` | 2.16.0 | HTTP transport required by Starlette 1.10's `TestClient` |
 
-The unrelated `httpx2` distribution is not used by this codebase and is intentionally not listed.
+This development-only dependency is not needed to launch the application.
 
 ## Frontend direct dependencies
 
@@ -84,7 +85,7 @@ The application itself uses SQLite from Python's standard library. No separate d
 
 ## Deliberately not installed or required
 
-- Tesseract OCR: optional external executable; no OCR binary is bundled or downloaded.
+- Tesseract OCR: optional external executable (Apache-2.0). `setup.ps1 -InstallMachinePrerequisites` installs `tesseract-ocr.tesseract` through `winget` when it is missing; the catalog version checked for this setup was 5.5.3. If installation is unavailable or cancelled, image uploads still work and show an explicit OCR-unavailable notice.
 - `pytesseract`: not used; the optional adapter calls the Tesseract executable directly.
 - `llama.cpp`, Qwen model weights, Cactus Needle, JAX, or another local LLM runtime: not installed or required.
 - Hosted AI APIs, API keys, paid services, cloud storage, Redis, Celery, or a vector database: not required.
@@ -101,10 +102,10 @@ The listed dependencies are available without a paid subscription. PyMuPDF is di
 From the project root, on Windows PowerShell:
 
 ```powershell
-.\setup.ps1 -InstallDependencies
+.\setup.ps1 -InstallDependencies -InstallMachinePrerequisites
 ```
 
-The script creates an isolated `.venv`, installs only `requirements.txt`, and runs `npm ci` against the checked-in lockfile. It does not install optional OCR or model software. For the backend test suite, additionally run:
+The script checks Python 3.11+ and Node.js 22.12+/npm 10+. With `-InstallMachinePrerequisites`, it can install Python 3.13, Node.js LTS, and Tesseract OCR through Windows Package Manager (`winget`) when missing; reopen PowerShell and rerun setup after a machine-level installation so PATH refreshes. It then creates an isolated `.venv`, installs only `requirements.txt`, and runs `npm ci` against the checked-in lockfile. It does not install model weights or hosted services. For the backend test suite, additionally run:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt

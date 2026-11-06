@@ -39,10 +39,10 @@ The product is built around three Cs:
 From the project root, run:
 
 ```powershell
-.\setup.ps1 -InstallDependencies
+.\setup.ps1 -InstallDependencies -InstallMachinePrerequisites
 ```
 
-This creates an isolated `.venv`, installs the pinned Python runtime packages from `requirements.txt`, and installs the exact frontend dependency tree from `frontend/package-lock.json` using `npm ci`. It does not reuse unrelated global Python packages. Package installation requires an internet connection. No optional OCR or model software is downloaded.
+This checks for Python 3.11+ and Node.js 22.12+/npm 10+. With `-InstallMachinePrerequisites`, if Windows Package Manager (`winget`) is available, it installs missing Python 3.13, Node.js LTS, and the optional Tesseract OCR engine, then asks you to reopen PowerShell and rerun setup so the updated PATH is picked up. It creates an isolated `.venv` (and repairs an older environment if it was configured to expose global Python packages), installs the pinned Python runtime packages from `requirements.txt`, and installs the exact frontend dependency tree from `frontend/package-lock.json` using `npm ci`. It does not reuse unrelated global Python packages. Package installation requires an internet connection. No model weights or hosted services are downloaded.
 
 For backend tests, install the additional test client dependency:
 
@@ -58,7 +58,7 @@ After setup, start the production-style local app with:
 .\run.ps1
 ```
 
-The script checks the project environment, builds the frontend if `dist/index.html` is missing, and starts FastAPI on loopback. It does not install packages.
+The script checks the project environment, rebuilds the frontend from the current source, and starts FastAPI on loopback. It does not install packages.
 
 Start the backend from the project root:
 
@@ -88,7 +88,7 @@ Open `http://127.0.0.1:5173`. Vite proxies `/api` requests to the local backend.
 
 `requirements.txt` contains only Python packages imported by the application. `requirements-dev.txt` adds the HTTP client used by FastAPI's test client. Frontend dependencies are declared in `frontend/package.json` and locked in `frontend/package-lock.json`; do not copy JavaScript packages into the Python requirements file.
 
-See [docs/DEPENDENCIES.md](docs/DEPENDENCIES.md) for the human-readable dependency inventory, versions, purposes, and optional tools that are deliberately not installed.
+See [docs/DEPENDENCIES.md](docs/DEPENDENCIES.md) for the human-readable dependency inventory, versions, purposes, and optional tooling. For a ready-made set of safe sample files and a no-code acceptance checklist, see [examples/TESTING_GUIDE.md](examples/TESTING_GUIDE.md).
 
 ## Verify
 

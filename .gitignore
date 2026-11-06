@@ -6,6 +6,8 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.hypothesis/
+.coverage
 htmlcov/
 
 # Local databases, immutable source blobs, uploads and generated exports
@@ -37,6 +39,14 @@ frontend/dist/
 frontend/.vite/
 frontend/coverage/
 dist/
+coverage/
+test-results/
+playwright-report/
+
+# Personal working files and local-only test data
+private/
+user-data/
+*.local
 
 # Editors and operating systems
 .vscode/
