@@ -86,7 +86,7 @@ npm run dev
 
 Open `http://127.0.0.1:5173`. Vite proxies `/api` requests to the local backend.
 
-`requirements.txt` contains only Python packages imported by the application. `requirements-dev.txt` adds the HTTP client used by FastAPI's test client. Frontend dependencies are declared in `frontend/package.json` and locked in `frontend/package-lock.json`; do not copy JavaScript packages into the Python requirements file.
+`requirements.txt` contains the application's Python runtime dependencies and explicitly pinned ASGI compatibility components. `requirements-dev.txt` adds the HTTP transport used by FastAPI's test client. Frontend dependencies are declared in `frontend/package.json` and locked in `frontend/package-lock.json`; do not copy JavaScript packages into the Python requirements file.
 
 See [docs/DEPENDENCIES.md](docs/DEPENDENCIES.md) for the human-readable dependency inventory, versions, purposes, and optional tooling. For a ready-made set of safe sample files and a no-code acceptance checklist, see [examples/TESTING_GUIDE.md](examples/TESTING_GUIDE.md).
 

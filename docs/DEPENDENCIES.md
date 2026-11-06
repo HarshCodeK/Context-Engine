@@ -7,7 +7,7 @@ This file describes the dependencies required to clone, run, and test this proje
 - Frontend direct dependencies: `frontend/package.json`
 - Exact frontend dependency resolution: `frontend/package-lock.json`
 
-Do not replace these manifests with a full `pip freeze` from a developer workstation. The current development `.venv` was created with access to pre-existing system packages, so its package listing contains unrelated tools.
+Do not replace these manifests with a full `pip freeze` from a developer workstation. The setup script keeps `.venv` isolated from global/system packages and repairs older environments that were created with system-site-package access.
 
 ## Python runtime
 
