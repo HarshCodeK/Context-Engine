@@ -32,14 +32,14 @@ The product goal, architecture principles, company use cases and staged roadmap 
 
 ## Verification
 
-- Full backend suite: **118 tests passed** after CSV native table extraction, persistence, search, edit and row-summary coverage.
+- Full backend suite: **119 tests passed** after CSV native table extraction, delimiter detection, persistence, search, edit and row-summary coverage.
 - Frontend lint: **0 warnings and 0 errors** after the table explorer implementation.
 - Frontend TypeScript + Vite production build: passed after the table explorer implementation.
 - Browser QA on an isolated temporary database: upload, section segmentation, cached digest display, audited edit, digest refresh, lexical search, context selection and digest substitution all exercised.
 - After editing the launch date from 19 May to 20 May 2027, search returned the new date and zero matches for the old date.
 - Browser API requests on the final QA port returned HTTP 200 for health, source/version/node/digest reads and search. The earlier 8002 log contained a pre-fix 404; the final QA run used port 8003 and a fresh isolated database.
 - Hierarchy browser QA on isolated port 8004 ingested a nested Markdown outline and rendered all eight heading/paragraph nodes with full section paths; parent-child relationships and exact offsets are covered by backend tests.
-- CSV native table automated coverage: duplicate headers, blank headers/cells, quoted commas, embedded newlines, Unicode, stable table keys, exact cell values, parent links, cell-level FTS search, duplicate re-ingest, cell correction/blanking with refreshed row search, and immutable source-byte reads.
+- CSV native table automated coverage: comma and semicolon delimiter detection, duplicate headers, blank headers/cells, quoted commas, embedded newlines, Unicode, stable table keys, exact cell values, parent links, cell-level FTS search, duplicate re-ingest, cell correction/blanking with refreshed row search, and immutable source-byte reads.
 - Isolated browser QA on port 8005 with a synthetic 120-record × 9-column CSV: one CSV source node plus one native table; 120 records and 9 headers displayed; filtering `Riverside` returned 40 records; searching `NS-0001` returned cell-level and row-level evidence; compiled cell context retained source/version/location/hash; cell edits refreshed the row summary and clearing a cell remained supported; the original blob still matched the fixture byte-for-byte; identical re-upload stayed at v1 and changed bytes under the same filename created v2 while preserving v1 history.
 - Responsive browser QA at 390 CSS pixels: document width remained 375 pixels while the 991-pixel table content scrolled inside its 288-pixel viewport; no horizontal page overflow. Browser console reported zero errors or warnings.
 

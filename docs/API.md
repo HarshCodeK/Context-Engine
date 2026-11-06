@@ -29,7 +29,7 @@ The response contains `results`, `processed`, and `storage: "memory-only"`. Each
 
 The endpoint enforces file count, file size, aggregate size, and upload rate limits. A batch can return a mixture of successful and failed file results.
 
-CSV evidence includes an additional `evidence.tables` payload. It preserves original header text, disambiguated display labels, logical record numbers, one-based column indexes, spreadsheet-style column labels, exact string values and explicit empty-cell markers. Native cell indexing is capped at 5,000 cells per table; the Markdown table and original source are retained when this structural cap is reached.
+CSV evidence includes an additional `evidence.tables` payload. It detects comma, semicolon, tab and pipe delimiters, and preserves the detected delimiter, original header text, disambiguated display labels, logical record numbers, one-based column indexes, spreadsheet-style column labels, exact string values and explicit empty-cell markers. Native cell indexing is capped at 5,000 cells per table; the Markdown table and original source are retained when this structural cap is reached.
 
 ## Persistent knowledge workspace
 

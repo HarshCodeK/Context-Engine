@@ -61,6 +61,15 @@ class ExtractionTests(unittest.TestCase):
         self.assertIn('200', result['markdown'])
         self.assertTrue(any('Native CSV cell indexing capped' in warning for warning in result['warnings']))
 
+    def test_csv_detects_semicolon_delimiter_without_splitting_quoted_commas(self):
+        source = 'Name;Notes\nAsha;"Planning, research and delivery"\nRavi;"Line one\nLine two"\n'.encode('utf-8')
+        result = extract_document('semicolon.csv', source)
+        table = result['evidence']['tables'][0]
+        self.assertEqual(table['locator']['delimiter'], ';')
+        self.assertEqual(table['headers'][1]['value'], 'Notes')
+        self.assertEqual(table['rows'][0]['cells'][1]['value'], 'Planning, research and delivery')
+        self.assertEqual(table['rows'][1]['cells'][1]['value'], 'Line one\nLine two')
+
     def test_pdf_evidence_blocks_anchor_each_page_to_markdown_ranges(self):
         document = fitz.open()
         first_page = document.new_page()

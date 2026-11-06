@@ -161,7 +161,7 @@ def _spreadsheet_column_label(index: int) -> str:
     return label
 
 
-def build_csv_native_table(rows: list[list[Any]], source_id: str) -> dict[str, Any]:
+def build_csv_native_table(rows: list[list[Any]], source_id: str, delimiter: str = ",") -> dict[str, Any]:
     """Describe CSV rows/cells without coercing values or losing source coordinates.
 
     CSV record numbers are logical records (not physical text lines), so quoted
@@ -218,6 +218,7 @@ def build_csv_native_table(rows: list[list[Any]], source_id: str) -> dict[str, A
             "data_row_start": 2, "data_row_end": len(rows),
             "row_count": max(0, len(rows) - 1), "column_count": width,
             "indexed_cell_count": indexed_cells, "cells_truncated": truncated,
+            "delimiter": delimiter,
         },
         "headers": headers,
         "rows": records,
@@ -367,19 +368,29 @@ def extract_document(filename: str, content: bytes, content_type: str | None = N
             decoded = content.decode("utf-8-sig", errors="replace")
             warnings.append("Some CSV bytes could not be decoded as UTF-8; review cell contents.")
         try:
-            rows, truncated = bounded_table_rows(csv.reader(io.StringIO(decoded, newline=""), strict=True))
+            try:
+                dialect = csv.Sniffer().sniff(decoded[:65_536], delimiters=",;\t|")
+            except csv.Error:
+                dialect = csv.excel
+            rows, truncated = bounded_table_rows(
+                csv.reader(io.StringIO(decoded, newline=""), dialect=dialect, strict=True)
+            )
         except csv.Error as exc:
             raise ValueError(f"Could not parse CSV: {exc}") from exc
         if truncated:
             warnings.append(f"CSV output truncated at {MAX_TABLE_ROWS:,} rows, {MAX_TABLE_COLUMNS:,} columns or {MAX_TABLE_CELLS:,} cells.")
-        native_table = build_csv_native_table(rows, source_id)
+        native_table = build_csv_native_table(rows, source_id, dialect.delimiter)
         native_tables.append(native_table)
         if native_table["cells_truncated"]:
             warnings.append(
                 f"Native CSV cell indexing capped at {MAX_NATIVE_TABLE_CELLS:,} cells; "
                 "the complete extracted table remains available in the Markdown view and original file."
             )
-        evidence_locator = {"type": "csv_table", "row_count": len(rows), "column_count": max((len(row) for row in rows), default=0)}
+        evidence_locator = {
+            "type": "csv_table", "row_count": len(rows),
+            "column_count": max((len(row) for row in rows), default=0),
+            "delimiter": dialect.delimiter,
+        }
         md = f"# {title}\n\n" + table_md(rows)
     elif ext == ".json":
         evidence_locator = {"type": "json_document"}
