@@ -13,6 +13,7 @@ The product is built around three Cs:
 - Upload up to 12 files per batch, with per-file and total-size limits.
 - Extract PDF, DOCX, PPTX, XLSX, CSV, HTML, JSON, Markdown, text, and common image formats.
 - Inspect extraction route, processing time, estimated tokens, warnings, source SHA-256, and block-level evidence.
+- Preserve CSV tables as searchable table, column, record, and cell nodes with exact row/column provenance; inspect and filter them in the table explorer.
 - Edit extracted Markdown in the browser and export a single file or a selected context pack.
 - Save organization, project, and task rules in SQLite.
 - Let local agents pull matching rules through a read-only HTTP endpoint or the included MCP server.
@@ -22,8 +23,9 @@ The product is built around three Cs:
 
 - OCR is optional. If Tesseract is not installed, scanned PDF pages and images are reported as unreadable; native text extraction still works.
 - Semantic summarization is not enabled. The current output is faithful extraction and structured context. A local model can be added after its quality and speed are benchmarked on this machine.
+- CSV native cell indexing is capped at 5,000 cells per table to keep local knowledge-node fan-out bounded. The extracted Markdown table and immutable original remain available when the cap is reached.
 - Audio/video transcription, GIF/TIFF, legacy `.doc`/`.xls`/`.ppt`, EPUB, and archive ingestion are not supported.
-- Uploaded files are processed in memory and are not stored as a document library. Saved context rules are stored locally in `data/context_studio.sqlite3`.
+- The lightweight `/api/extract` route processes files in memory. The knowledge workspace's `/api/knowledge/ingest` route deliberately persists original bytes in the local content-addressed `data/source_blobs/` store and metadata/derived knowledge in `data/knowledge.sqlite3`; these local data files are excluded from Git.
 
 ## Requirements
 

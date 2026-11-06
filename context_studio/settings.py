@@ -30,6 +30,10 @@ RATE_LIMIT = _positive_int_env("UPLOADS_PER_MINUTE", 10)
 MAX_TABLE_ROWS = _positive_int_env("MAX_TABLE_ROWS", 2000)
 MAX_TABLE_COLUMNS = _positive_int_env("MAX_TABLE_COLUMNS", 200)
 MAX_TABLE_CELLS = _positive_int_env("MAX_TABLE_CELLS", 100_000)
+# Native row/cell records are more expensive than a flat Markdown table. Keep
+# their fan-out bounded independently; the complete bounded Markdown table and
+# immutable source bytes remain available when this structural cap is reached.
+MAX_NATIVE_TABLE_CELLS = _positive_int_env("MAX_NATIVE_TABLE_CELLS", 5_000)
 MAX_PPTX_SLIDES = _positive_int_env("MAX_PPTX_SLIDES", 200)
 MAX_PPTX_SHAPES = _positive_int_env("MAX_PPTX_SHAPES", 20_000)
 MAX_DOCX_PARAGRAPHS = _positive_int_env("MAX_DOCX_PARAGRAPHS", 20_000)

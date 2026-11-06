@@ -80,6 +80,19 @@ class DocumentStructureTests(unittest.TestCase):
         self.assertEqual(nodes[1]['parent_node_key'], nodes[0]['node_key'])
         self.assertIn('| Latency | 120 ms |', nodes[1]['content'])
 
+    def test_csv_document_heading_is_not_misidentified_as_the_native_table(self):
+        markdown = '# report\n\n| Name | Value |\n| --- | --- |\n| A | 1 |'
+        nodes = split_evidence_block(
+            markdown,
+            markdown_start=0,
+            markdown_end=len(markdown),
+            source_locator={'type': 'csv_table', 'row_count': 2, 'column_count': 2},
+            block_id='csv-block',
+        )
+        self.assertEqual([node['node_type'] for node in nodes], ['section', 'table'])
+        self.assertEqual(nodes[0]['locator_json']['type'], 'csv_document')
+        self.assertEqual(nodes[1]['locator_json']['type'], 'csv_table')
+
     def test_keeps_single_unstructured_block_stable(self):
         markdown = 'A single line with no structural boundaries.'
         nodes = split_evidence_block(

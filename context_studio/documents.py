@@ -24,7 +24,7 @@ from pptx import Presentation
 from .settings import (
     MAX_BYTES, MAX_IMAGE_PIXELS, MAX_OCR_SECONDS, MAX_OCR_TOTAL_SECONDS,
     MAX_OCR_PAGES_PER_FILE, MAX_PAGES, MAX_TABLE_ROWS, MAX_TABLE_COLUMNS,
-    MAX_TABLE_CELLS, MAX_PPTX_SLIDES, MAX_PPTX_SHAPES,
+    MAX_TABLE_CELLS, MAX_NATIVE_TABLE_CELLS, MAX_PPTX_SLIDES, MAX_PPTX_SHAPES,
     MAX_DOCX_PARAGRAPHS, MAX_EXTRACTED_CHARS, OFFICE_MARKERS, SUPPORTED,
 )
 
@@ -152,6 +152,80 @@ def bounded_table_rows(rows, max_cells: int = MAX_TABLE_CELLS) -> tuple[list[lis
     return result, truncated
 
 
+def _spreadsheet_column_label(index: int) -> str:
+    """Return a one-based spreadsheet column label (1 → A, 27 → AA)."""
+    label = ""
+    while index:
+        index, remainder = divmod(index - 1, 26)
+        label = chr(65 + remainder) + label
+    return label
+
+
+def build_csv_native_table(rows: list[list[Any]], source_id: str) -> dict[str, Any]:
+    """Describe CSV rows/cells without coercing values or losing source coordinates.
+
+    CSV record numbers are logical records (not physical text lines), so quoted
+    cells containing embedded newlines do not shift subsequent row locators.
+    The first record is treated as the header, matching the table preview.
+    """
+    width = max((len(row) for row in rows), default=0)
+    raw_headers = [str(value if value is not None else "") for value in (rows[0] if rows else [])]
+    raw_headers.extend([""] * (width - len(raw_headers)))
+    seen: dict[str, int] = {}
+    headers = []
+    for index, raw_header in enumerate(raw_headers, 1):
+        base = raw_header.strip() or f"Column {index}"
+        seen[base.casefold()] = seen.get(base.casefold(), 0) + 1
+        occurrence = seen[base.casefold()]
+        headers.append({
+            "value": raw_header,
+            "label": base if occurrence == 1 else f"{base} ({occurrence})",
+            "column_index": index,
+            "column_label": _spreadsheet_column_label(index),
+        })
+
+    table_key = hashlib.sha256(f"{source_id}:csv:table:1".encode("utf-8")).hexdigest()[:24]
+    records = []
+    indexed_cells = 0
+    truncated = False
+    for row_number, raw_row in enumerate(rows[1:], start=2):
+        values = [str(value if value is not None else "") for value in raw_row]
+        values.extend([""] * (width - len(values)))
+        cells = []
+        for column_index, value in enumerate(values, start=1):
+            if indexed_cells >= MAX_NATIVE_TABLE_CELLS:
+                truncated = True
+                break
+            header = headers[column_index - 1]
+            cells.append({
+                "column_index": column_index,
+                "column_label": header["column_label"],
+                "header": header["value"],
+                "header_label": header["label"],
+                "value": value,
+                "is_empty": value == "",
+            })
+            indexed_cells += 1
+        if len(cells) < len(values):
+            truncated = True
+        records.append({"row_number": row_number, "values": values, "cells": cells})
+
+    return {
+        "table_key": table_key,
+        "title": "CSV table",
+        "locator": {
+            "type": "csv_table", "table": 1, "header_row": 1,
+            "data_row_start": 2, "data_row_end": len(rows),
+            "row_count": max(0, len(rows) - 1), "column_count": width,
+            "indexed_cell_count": indexed_cells, "cells_truncated": truncated,
+        },
+        "headers": headers,
+        "rows": records,
+        "indexed_cell_count": indexed_cells,
+        "cells_truncated": truncated,
+    }
+
+
 def validate_office_archive(content: bytes, extension: str) -> None:
     """Check ZIP structure and expansion bounds before calling Office parsers."""
     try:
@@ -267,6 +341,7 @@ def extract_document(filename: str, content: bytes, content_type: str | None = N
     ext = validate_file_content(name, content, content_type)
     source_id = hashlib.sha256(content).hexdigest()
     warnings: list[str] = []
+    native_tables: list[dict[str, Any]] = []
     evidence_locator: dict[str, Any] = {"type": "file"}
     evidence_method = "deterministic_parser"
     pages = 1
@@ -297,6 +372,13 @@ def extract_document(filename: str, content: bytes, content_type: str | None = N
             raise ValueError(f"Could not parse CSV: {exc}") from exc
         if truncated:
             warnings.append(f"CSV output truncated at {MAX_TABLE_ROWS:,} rows, {MAX_TABLE_COLUMNS:,} columns or {MAX_TABLE_CELLS:,} cells.")
+        native_table = build_csv_native_table(rows, source_id)
+        native_tables.append(native_table)
+        if native_table["cells_truncated"]:
+            warnings.append(
+                f"Native CSV cell indexing capped at {MAX_NATIVE_TABLE_CELLS:,} cells; "
+                "the complete extracted table remains available in the Markdown view and original file."
+            )
         evidence_locator = {"type": "csv_table", "row_count": len(rows), "column_count": max((len(row) for row in rows), default=0)}
         md = f"# {title}\n\n" + table_md(rows)
     elif ext == ".json":
@@ -574,6 +656,8 @@ def extract_document(filename: str, content: bytes, content_type: str | None = N
         "source_sha256": source_id,
         "blocks": evidence_blocks,
     }
+    if native_tables:
+        evidence["tables"] = native_tables
     return {
         "filename": name,
         "markdown": md,

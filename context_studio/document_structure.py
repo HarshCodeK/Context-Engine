@@ -55,6 +55,8 @@ def split_evidence_block(
             "markdown_start": absolute_start,
             "markdown_end": absolute_end,
         }
+        if node_type == "section" and source_locator.get("type") == "csv_table":
+            locator["type"] = "csv_document"
         events.append({
             "node_type": node_type,
             "title": title,

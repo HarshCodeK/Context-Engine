@@ -25,25 +25,30 @@ The product goal, architecture principles, company use cases and staged roadmap 
 - [x] Backfill missing digests lazily for older records and duplicate re-ingests.
 - [x] Make digest substitution an explicit compiler choice; do not append a digest beside passages from the same source.
 - [x] Build deterministic nested heading parents with paragraph and table-block children; preserve source offsets and expose parent links to the inspector.
-- [ ] Extend hierarchy into native table/row/cell nodes across supported formats.
+- [x] Expand CSV into native table/column/record/cell nodes with stable source-derived keys, exact string values, blank-cell preservation and record/column locators.
+- [x] Index native CSV cells and record summaries in FTS5; add a bounded, filterable table explorer with direct cell inspection.
+- [ ] Extend native table/row/cell extraction to XLSX, DOCX, PPTX and PDF while preserving format-specific sheet/page/table coordinates.
 - [ ] Add version diffing and selective dependency invalidation.
 
 ## Verification
 
-- Full backend suite: **113 tests passed** after the nested hierarchy, structure, digest, legacy-backfill and API changes.
-- Frontend lint: **0 warnings and 0 errors**.
-- Frontend TypeScript + Vite production build: passed.
+- Full backend suite: **118 tests passed** after CSV native table extraction, persistence, search, edit and row-summary coverage.
+- Frontend lint: **0 warnings and 0 errors** after the table explorer implementation.
+- Frontend TypeScript + Vite production build: passed after the table explorer implementation.
 - Browser QA on an isolated temporary database: upload, section segmentation, cached digest display, audited edit, digest refresh, lexical search, context selection and digest substitution all exercised.
 - After editing the launch date from 19 May to 20 May 2027, search returned the new date and zero matches for the old date.
 - Browser API requests on the final QA port returned HTTP 200 for health, source/version/node/digest reads and search. The earlier 8002 log contained a pre-fix 404; the final QA run used port 8003 and a fresh isolated database.
 - Hierarchy browser QA on isolated port 8004 ingested a nested Markdown outline and rendered all eight heading/paragraph nodes with full section paths; parent-child relationships and exact offsets are covered by backend tests.
+- CSV native table automated coverage: duplicate headers, blank headers/cells, quoted commas, embedded newlines, Unicode, stable table keys, exact cell values, parent links, cell-level FTS search, duplicate re-ingest, cell correction/blanking with refreshed row search, and immutable source-byte reads.
+- Isolated browser QA on port 8005 with a synthetic 120-record × 9-column CSV: one CSV source node plus one native table; 120 records and 9 headers displayed; filtering `Riverside` returned 40 records; searching `NS-0001` returned cell-level and row-level evidence; compiled cell context retained source/version/location/hash; cell edits refreshed the row summary and clearing a cell remained supported; the original blob still matched the fixture byte-for-byte; identical re-upload stayed at v1 and changed bytes under the same filename created v2 while preserving v1 history.
+- Responsive browser QA at 390 CSS pixels: document width remained 375 pixels while the 991-pixel table content scrolled inside its 288-pixel viewport; no horizontal page overflow. Browser console reported zero errors or warnings.
 
 ## Safety and migration notes
 
 - The existing `data/context_studio.sqlite3` database and legacy extraction/context-rule behavior remain untouched.
 - The knowledge store uses a separate `data/knowledge.sqlite3` database and `data/source_blobs/` directory and is now exposed through the local API and React workspace.
 - `parent_node_id` already existed in schema version 1, so hierarchy activation required no database migration. Existing flat records remain valid root nodes; newly ingested Markdown headings/paragraphs use explicit parent links.
-- Markdown tables are currently represented as table-block child nodes. Individual cell/row nodes across spreadsheets and Office/PDF formats are still future work.
+- Markdown tables remain table-block child nodes. CSV is now expanded into native table/column/record/cell nodes; XLSX, DOCX, PPTX and PDF native table expansion remains future work.
 - Existing parsers remain ingestion adapters; they are not the product's core differentiator.
 - Document digests remain deterministic extractive artifacts, not semantic AI summaries. Digest substitution may increase or decrease context size depending on the task; no token-saving claim is made.
 - No documents are sent to an external model; no model provider or embedding service is configured.

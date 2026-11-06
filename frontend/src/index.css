@@ -601,3 +601,38 @@ button:disabled { cursor: not-allowed; }
 .living-digest-option { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; color: var(--foreground); font-size: 12px; }
 .living-digest-option input { width: 15px; height: 15px; margin: 0; accent-color: var(--signal); }
 .living-digest-option span { flex-basis: 100%; margin-left: 24px; color: var(--muted-foreground); font-size: 11px; line-height: 1.5; }
+
+.native-table-explorer { min-width: 0; padding: 15px; border: 1px solid var(--border); border-radius: 11px; background: color-mix(in srgb, var(--surface) 78%, transparent); }
+.native-table-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.native-table-heading h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 16px; font-weight: 590; letter-spacing: -.035em; }
+.native-table-heading h3 svg { color: var(--signal); }
+.native-table-heading > div > p:last-child { max-width: 540px; margin: 6px 0 0; color: var(--muted-foreground); font-size: 11px; line-height: 1.55; }
+.native-table-badges { display: flex; flex: 0 0 auto; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.native-table-badges .badge { margin-top: 3px; font-family: var(--font-mono); font-size: 9px; }
+.native-table-cap-note { margin: 9px 0 0; color: var(--muted-foreground); font-size: 10px; line-height: 1.55; }
+.native-table-tools { margin: 13px 0 9px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.native-table-search { width: min(360px, 100%); display: flex; align-items: center; gap: 8px; color: var(--muted-foreground); }
+.native-table-search input { height: 34px; font-size: 11px; }
+.native-table-tools > span { color: var(--muted-foreground); font-family: var(--font-mono); font-size: 9px; white-space: nowrap; }
+.native-table-scroll { max-width: 100%; overflow: auto; border: 1px solid var(--border); border-radius: 8px; scrollbar-color: var(--border) transparent; }
+.native-table-grid { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; text-align: left; }
+.native-table-grid th, .native-table-grid td { max-width: 260px; padding: 9px 11px; border-bottom: 1px solid var(--border); border-right: 1px solid color-mix(in srgb, var(--border) 55%, transparent); font-size: 10px; }
+.native-table-grid thead th { position: sticky; top: 0; z-index: 1; color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); font-size: 9px; font-weight: 550; letter-spacing: .035em; white-space: nowrap; }
+.native-table-grid tbody th { width: 74px; color: var(--muted-foreground); background: color-mix(in srgb, var(--card) 70%, transparent); font-family: var(--font-mono); font-size: 9px; font-weight: 500; }
+.native-table-grid tr:last-child th, .native-table-grid tr:last-child td { border-bottom: 0; }
+.native-table-grid th:last-child, .native-table-grid td:last-child { border-right: 0; }
+.native-cell-button { width: 100%; max-width: 260px; padding: 2px 3px; overflow: hidden; border: 1px solid transparent; border-radius: 4px; color: var(--foreground); background: transparent; text-align: left; text-overflow: ellipsis; white-space: nowrap; }
+.native-cell-button:hover { border-color: var(--border); background: var(--accent); }
+.native-cell-button:focus-visible { outline: 2px solid var(--ring); outline-offset: 1px; }
+.native-cell-button.is-selected { border-color: color-mix(in srgb, var(--signal) 55%, var(--border)); background: color-mix(in srgb, var(--signal) 10%, var(--surface)); }
+.native-cell-empty { color: var(--muted-foreground); font-style: italic; }
+.native-table-no-results { padding: 24px !important; color: var(--muted-foreground); text-align: center !important; }
+.native-table-footer { margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.native-table-footer > span { color: var(--muted-foreground); font-size: 9px; line-height: 1.5; }
+@media (max-width: 720px) {
+  .native-table-explorer { padding: 11px; }
+  .native-table-heading { flex-direction: column; gap: 8px; }
+  .native-table-tools { align-items: flex-start; flex-direction: column; gap: 7px; }
+  .native-table-search { width: 100%; }
+  .native-table-footer { align-items: flex-start; flex-direction: column; }
+}

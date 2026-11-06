@@ -29,6 +29,38 @@ The response contains `results`, `processed`, and `storage: "memory-only"`. Each
 
 The endpoint enforces file count, file size, aggregate size, and upload rate limits. A batch can return a mixture of successful and failed file results.
 
+CSV evidence includes an additional `evidence.tables` payload. It preserves original header text, disambiguated display labels, logical record numbers, one-based column indexes, spreadsheet-style column labels, exact string values and explicit empty-cell markers. Native cell indexing is capped at 5,000 cells per table; the Markdown table and original source are retained when this structural cap is reached.
+
+## Persistent knowledge workspace
+
+### `POST /api/knowledge/ingest`
+
+Accepts the same repeated `files` and optional `processing_mode` fields as `/api/extract`, plus an optional `workspace_id`. It extracts each file and persists the original bytes in the local content-addressed blob store. Unchanged bytes reuse the existing source version; changed bytes create a new immutable version. The response includes the extraction result and a `knowledge` summary (`source_id`, `source_version_id`, `version_number`, node count and index metadata).
+
+### `GET /api/knowledge/sources`
+
+Lists current sources in a workspace.
+
+### `GET /api/knowledge/sources/{source_id}/versions`
+
+Lists immutable versions and extraction metadata for one source.
+
+### `GET /api/knowledge/versions/{source_version_id}/nodes`
+
+Returns the version's hierarchical knowledge nodes. CSV nodes include `table`, `column`, `row` and `cell` types. Cell locators identify the logical record, column, original header and empty-cell state.
+
+### `GET /api/knowledge/sources/{source_id}/digest`
+
+Returns the current deterministic extractive digest, lazily rebuilding it for older sources when necessary.
+
+### `GET /api/knowledge/search?q={query}`
+
+Searches current source versions using SQLite FTS5/BM25. Results retain source identity, version, node ID, locator and content hash. A CSV cell match is returned with its record and column provenance.
+
+### `PATCH /api/knowledge/nodes/{node_id}`
+
+Applies an audited correction to the working knowledge node and refreshes dependent digest/index artifacts. Correcting a CSV cell also regenerates its parent record summary so the old value does not remain searchable in the row. CSV cells may be intentionally cleared; the cell remains present with an explicit empty state. The immutable source bytes are not modified.
+
 ## Context rules
 
 ### `GET /api/context-rules`

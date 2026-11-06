@@ -16,6 +16,7 @@ from .chunking import structure_aware_chunks
 from .document_structure import split_evidence_block
 from .knowledge_schema import initialize_knowledge_db
 from .summarization import build_extractive_digest
+from .settings import MAX_TABLE_COLUMNS, MAX_TABLE_ROWS
 
 
 def _now() -> str:
@@ -26,6 +27,145 @@ def _sha256(value: bytes | str) -> str:
     if isinstance(value, str):
         value = value.encode("utf-8")
     return hashlib.sha256(value).hexdigest()
+
+
+def _native_table_nodes(
+    table: dict[str, Any], parent_node_key: str | None, start_ordinal: int
+) -> list[dict[str, Any]]:
+    """Expand an extractor table record into stable table → row → cell nodes."""
+    table_key = str(table.get("table_key") or "")
+    headers = table.get("headers")
+    rows = table.get("rows")
+    locator = table.get("locator")
+    if not table_key or not isinstance(headers, list) or not isinstance(rows, list) or not isinstance(locator, dict):
+        raise ValueError("Native table evidence is missing its stable key, headers, rows or locator")
+    if len(headers) > MAX_TABLE_COLUMNS or len(rows) > MAX_TABLE_ROWS:
+        raise ValueError("Native table evidence exceeds the configured structural bounds")
+
+    def make_node(
+        node_key: str,
+        parent_key: str | None,
+        node_type: str,
+        title: str | None,
+        content: str,
+        node_locator: dict[str, Any],
+        ordinal: int,
+    ) -> dict[str, Any]:
+        return {
+            "id": str(uuid.uuid4()),
+            "node_key": node_key,
+            "parent_node_key": parent_key,
+            "ordinal": ordinal,
+            "node_type": node_type,
+            "title": title,
+            "content": content,
+            "locator_json": json.dumps(node_locator, ensure_ascii=False, sort_keys=True),
+            "content_sha256": _sha256(content),
+        }
+
+    table_title = str(table.get("title") or "Table")
+    table_node_key = f"{table_key}:table"
+    result = [make_node(
+        table_node_key,
+        parent_node_key,
+        "table",
+        table_title,
+        f"{table_title} · {len(rows)} data rows · {len(headers)} columns",
+        locator,
+        start_ordinal,
+    )]
+
+    for header in headers:
+        if not isinstance(header, dict):
+            raise ValueError("Native table header evidence is malformed")
+        column_index = header.get("column_index")
+        if not isinstance(column_index, int) or not 1 <= column_index <= MAX_TABLE_COLUMNS:
+            raise ValueError("Native table header evidence has an invalid column index")
+        column_label = str(header.get("column_label") or "")
+        header_value = str(header.get("value") or "")
+        header_label = str(header.get("label") or f"Column {column_index}")
+        result.append(make_node(
+            f"{table_key}:column:{column_index}",
+            table_node_key,
+            "column",
+            header_label,
+            header_value,
+            {
+                **locator,
+                "type": "csv_column",
+                "column": column_index,
+                "column_label": column_label,
+                "header": header_value,
+                "header_label": header_label,
+            },
+            start_ordinal + len(result),
+        ))
+
+    for row in rows:
+        if not isinstance(row, dict) or not isinstance(row.get("cells"), list):
+            raise ValueError("Native table row evidence is malformed")
+        row_number = row.get("row_number")
+        values = row.get("values")
+        if not isinstance(row_number, int) or row_number < 2 or not isinstance(values, list):
+            raise ValueError("Native table row evidence has an invalid record number or values")
+        row_key = f"{table_key}:row:{row_number}"
+        row_parts = []
+        for index, value in enumerate(values):
+            header = headers[index] if index < len(headers) else {}
+            label = str(header.get("label") or f"Column {index + 1}") if isinstance(header, dict) else f"Column {index + 1}"
+            text_value = str(value if value is not None else "")
+            row_parts.append(f"{label}: {text_value if text_value else '[blank]'}")
+        row_headers = [
+            str(header.get("label") or f"Column {index + 1}") if isinstance(header, dict) else f"Column {index + 1}"
+            for index, header in enumerate(headers)
+        ]
+        row_locator = {
+            **locator,
+            "type": "csv_row",
+            "row": row_number,
+            "headers_json": json.dumps(row_headers, ensure_ascii=False, separators=(",", ":")),
+            "values_json": json.dumps(values, ensure_ascii=False, separators=(",", ":")),
+        }
+        result.append(make_node(
+            row_key,
+            table_node_key,
+            "row",
+            f"Record {row_number}",
+            " | ".join(row_parts),
+            row_locator,
+            start_ordinal + len(result),
+        ))
+
+        for cell in row["cells"]:
+            if not isinstance(cell, dict):
+                raise ValueError("Native table cell evidence is malformed")
+            column_index = cell.get("column_index")
+            if not isinstance(column_index, int) or not 1 <= column_index <= MAX_TABLE_COLUMNS:
+                raise ValueError("Native table cell evidence has an invalid column index")
+            value = cell.get("value")
+            if not isinstance(value, str):
+                raise ValueError("Native table cell values must remain strings")
+            cell_key = f"{row_key}:cell:{column_index}"
+            cell_locator = {
+                **locator,
+                "type": "csv_cell",
+                "row": row_number,
+                "column": column_index,
+                "column_label": str(cell.get("column_label") or ""),
+                "header": str(cell.get("header") or ""),
+                "header_label": str(cell.get("header_label") or f"Column {column_index}"),
+                "is_empty": value == "",
+            }
+            result.append(make_node(
+                cell_key,
+                row_key,
+                "cell",
+                cell_locator["header_label"],
+                value,
+                cell_locator,
+                start_ordinal + len(result),
+            ))
+    return result
 
 
 class KnowledgeStore:
@@ -100,6 +240,9 @@ class KnowledgeStore:
             raise ValueError("Extraction evidence does not match the uploaded source bytes")
 
         prepared_nodes = []
+        native_tables = list(evidence.get("tables") or [])
+        if not isinstance(evidence.get("tables") or [], list):
+            raise ValueError("Extraction table evidence must be a list")
         for block in blocks:
             locator = block.get("locator")
             span = block.get("markdown_range")
@@ -121,6 +264,21 @@ class KnowledgeStore:
                 source_locator=locator,
                 block_id=block_id,
             ):
+                structured_locator = structured["locator_json"]
+                if (
+                    structured["node_type"] == "table"
+                    and structured_locator.get("type") == "csv_table"
+                    and native_tables
+                ):
+                    native_table = native_tables.pop(0)
+                    native_table = {
+                        **native_table,
+                        "locator": {**structured_locator, **native_table.get("locator", {})},
+                    }
+                    prepared_nodes.extend(
+                        _native_table_nodes(native_table, structured["parent_node_key"], len(prepared_nodes))
+                    )
+                    continue
                 prepared_nodes.append({
                     "id": str(uuid.uuid4()),
                     "node_key": structured["node_key"],
@@ -132,6 +290,12 @@ class KnowledgeStore:
                     "locator_json": json.dumps(structured["locator_json"], ensure_ascii=False, sort_keys=True),
                     "content_sha256": structured["content_sha256"],
                 })
+
+        # A malformed or future extractor may provide table metadata without a
+        # matching Markdown table block. Keep it inspectable as a root node tree
+        # rather than silently dropping source evidence.
+        for native_table in native_tables:
+            prepared_nodes.extend(_native_table_nodes(native_table, None, len(prepared_nodes)))
 
         storage_key = self._store_blob(content, digest)
         timestamp = _now()
@@ -349,17 +513,21 @@ class KnowledgeStore:
 
     def edit_node(self, node_id: str, new_content: str, reason: str | None = None) -> dict[str, Any]:
         """Apply a user correction to canonical knowledge and stale dependent artifacts."""
-        if not isinstance(new_content, str) or not new_content.strip():
-            raise ValueError("Edited knowledge text cannot be empty")
+        if not isinstance(new_content, str):
+            raise ValueError("Edited knowledge text must be a string")
         timestamp = _now()
+        changed_node_ids = [node_id]
         with self._connection() as connection:
             row = connection.execute(
-                """SELECT id, source_version_id, content, content_sha256
+                """SELECT id, source_version_id, parent_node_id, node_type,
+                          locator_json, content, content_sha256
                    FROM document_nodes WHERE id = ?""",
                 (node_id,),
             ).fetchone()
             if row is None:
                 raise KeyError("Knowledge node not found")
+            if row["node_type"] != "cell" and not new_content.strip():
+                raise ValueError("Edited knowledge text cannot be empty")
             before = {"content": row["content"], "content_sha256": row["content_sha256"]}
             after = {"content": new_content, "content_sha256": _sha256(new_content)}
             edit_id = str(uuid.uuid4())
@@ -375,20 +543,89 @@ class KnowledgeStore:
                     (reason or "").strip() or None, timestamp,
                 ),
             )
+            cell_locator = json.loads(row["locator_json"])
+            if cell_locator.get("type") == "csv_cell":
+                cell_locator["is_empty"] = new_content == ""
             connection.execute(
                 """UPDATE document_nodes
-                   SET content = ?, content_sha256 = ?, origin = 'user_edited', updated_at = ?
+                   SET content = ?, content_sha256 = ?, locator_json = ?,
+                       origin = 'user_edited', updated_at = ?
                    WHERE id = ?""",
-                (new_content, after["content_sha256"], timestamp, node_id),
+                (
+                    new_content, after["content_sha256"],
+                    json.dumps(cell_locator, ensure_ascii=False, sort_keys=True), timestamp, node_id,
+                ),
             )
-            connection.execute(
-                """UPDATE derived_artifacts SET status = 'stale', updated_at = ?
-                   WHERE id IN (
-                       SELECT artifact_id FROM artifact_dependencies
-                       WHERE dependency_type = 'document_node' AND dependency_id = ?
-                   ) AND status = 'current'""",
-                (timestamp, node_id),
-            )
+            # A CSV row is a searchable composite of its original cells. Keep
+            # that parent record in sync when one child cell is corrected, or
+            # the old value would remain discoverable beside the new one.
+            if cell_locator.get("type") == "csv_cell" and row["parent_node_id"]:
+                parent = connection.execute(
+                    """SELECT id, source_version_id, locator_json, content, content_sha256, node_type
+                       FROM document_nodes WHERE id = ?""",
+                    (row["parent_node_id"],),
+                ).fetchone()
+                if parent and parent["node_type"] == "row":
+                    parent_locator = json.loads(parent["locator_json"])
+                    try:
+                        values = json.loads(parent_locator.get("values_json", "[]"))
+                        headers = json.loads(parent_locator.get("headers_json", "[]"))
+                        column_index = int(cell_locator.get("column", 0))
+                    except (TypeError, ValueError, json.JSONDecodeError):
+                        values, headers, column_index = [], [], 0
+                    if 1 <= column_index <= len(values):
+                        values[column_index - 1] = new_content
+                        parts = []
+                        for index, value in enumerate(values):
+                            label = headers[index] if index < len(headers) else f"Column {index + 1}"
+                            parts.append(f"{label}: {value if value else '[blank]'}")
+                        updated_row = " | ".join(parts)
+                        parent_locator["values_json"] = json.dumps(
+                            values, ensure_ascii=False, separators=(",", ":")
+                        )
+                        parent_before = {
+                            "content": parent["content"],
+                            "content_sha256": parent["content_sha256"],
+                        }
+                        parent_after = {
+                            "content": updated_row,
+                            "content_sha256": _sha256(updated_row),
+                        }
+                        connection.execute(
+                            """INSERT INTO knowledge_edits(
+                                   id, source_version_id, document_node_id, edit_type,
+                                   before_json, after_json, reason, created_at
+                               ) VALUES (?, ?, ?, 'correct_extraction', ?, ?, ?, ?)""",
+                            (
+                                str(uuid.uuid4()), parent["source_version_id"], parent["id"],
+                                json.dumps(parent_before, ensure_ascii=False),
+                                json.dumps(parent_after, ensure_ascii=False),
+                                "Row summary refreshed after cell correction",
+                                timestamp,
+                            ),
+                        )
+                        connection.execute(
+                            """UPDATE document_nodes
+                               SET content = ?, content_sha256 = ?, locator_json = ?,
+                                   origin = 'user_edited', updated_at = ?
+                               WHERE id = ?""",
+                            (
+                                updated_row, parent_after["content_sha256"],
+                                json.dumps(parent_locator, ensure_ascii=False, sort_keys=True),
+                                timestamp, parent["id"],
+                            ),
+                        )
+                        changed_node_ids.append(parent["id"])
+
+            for changed_node_id in changed_node_ids:
+                connection.execute(
+                    """UPDATE derived_artifacts SET status = 'stale', updated_at = ?
+                       WHERE id IN (
+                           SELECT artifact_id FROM artifact_dependencies
+                           WHERE dependency_type = 'document_node' AND dependency_id = ?
+                       ) AND status = 'current'""",
+                    (timestamp, changed_node_id),
+                )
         self.rebuild_index(row["source_version_id"])
         self.build_digest(row["source_version_id"])
         return {"edit_id": edit_id, "node_id": node_id, "content_sha256": after["content_sha256"]}

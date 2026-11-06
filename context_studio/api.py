@@ -285,7 +285,7 @@ async def extract(
 
 
 class KnowledgeEditInput(BaseModel):
-    content: str = Field(min_length=1, max_length=2_000_000)
+    content: str = Field(min_length=0, max_length=2_000_000)
     reason: str | None = Field(default=None, max_length=1000)
 
 

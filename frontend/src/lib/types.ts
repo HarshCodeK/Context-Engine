@@ -18,10 +18,39 @@ export type HealthStatus = {
 export type EvidenceBlock = {
   block_id: string
   source_id: string
-  locator: Record<string, string | number>
+  locator: Record<string, string | number | boolean>
   markdown_range: { start: number; end: number; unit: string; end_exclusive: boolean }
   content_sha256: string
   extraction_method: string
+}
+
+export type NativeTableEvidence = {
+  table_key: string
+  title: string
+  locator: Record<string, string | number | boolean>
+  headers: { value: string; label: string; column_index: number; column_label: string }[]
+  rows: {
+    row_number: number
+    values: string[]
+    cells: {
+      column_index: number
+      column_label: string
+      header: string
+      header_label: string
+      value: string
+      is_empty: boolean
+    }[]
+  }[]
+  indexed_cell_count: number
+  cells_truncated: boolean
+}
+
+export type ExtractionEvidence = {
+  schema_version: string
+  source_id: string
+  source_sha256: string
+  blocks: EvidenceBlock[]
+  tables?: NativeTableEvidence[]
 }
 
 export type ExtractionResult = {
@@ -47,7 +76,7 @@ export type ExtractionResult = {
     }
   }
   context?: { estimated_tokens: number; input_bytes: number; markdown_bytes: number }
-  evidence?: { schema_version: string; source_id: string; source_sha256: string; blocks: EvidenceBlock[] }
+  evidence?: ExtractionEvidence
   error?: string
 }
 
@@ -118,7 +147,7 @@ export type KnowledgeNode = {
   content: string
   content_sha256: string
   origin: 'extracted' | 'user_edited' | 'model_derived'
-  locator: Record<string, string | number>
+  locator: Record<string, string | number | boolean>
 }
 
 export type KnowledgeSearchResult = {
@@ -134,13 +163,14 @@ export type KnowledgeSearchResult = {
   content_sha256: string
   token_estimate: number
   rank_score: number
-  locator: Record<string, string | number>
+  locator: Record<string, string | number | boolean>
 }
 
 export type KnowledgeIngestResult = {
   status: 'success' | 'error'
   filename: string
   error?: string
+  evidence?: ExtractionEvidence
   knowledge?: {
     source_id: string
     source_version_id: string
@@ -156,7 +186,7 @@ export type KnowledgeIngestResult = {
 export type KnowledgeDigest = {
   text: string
   method: string
-  evidence: { node_id: string; locator: Record<string, string | number>; start_offset: number; end_offset: number; node_content_sha256: string; sentence_sha256: string; score: number }[]
+  evidence: { node_id: string; locator: Record<string, string | number | boolean>; start_offset: number; end_offset: number; node_content_sha256: string; sentence_sha256: string; score: number }[]
   input_characters: number
   summary_characters: number
   source_version_id: string

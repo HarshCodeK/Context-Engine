@@ -120,6 +120,65 @@ class KnowledgeStoreTests(unittest.TestCase):
         self.assertEqual(matches[0]['locator']['type'], 'text_file')
         self.assertTrue(matches[0]['locator']['section'])
 
+    def test_csv_ingestion_builds_searchable_table_row_and_cell_provenance(self):
+        content = (
+            'Department,Owner,Budget,Deadline\n'
+            'Engineering,Asha,250000,2027-05-20\n'
+            'Research,Ravi,175000,2027-06-15\n'
+            'Operations,,90000,2027-07-01\n'
+        ).encode('utf-8')
+        result = self.store.ingest('portfolio.csv', content, self._extract('portfolio.csv', content))
+        nodes = self.store.list_nodes(result['source_version_id'])
+        table = next(node for node in nodes if node['node_type'] == 'table')
+        columns = [node for node in nodes if node['node_type'] == 'column']
+        rows = [node for node in nodes if node['node_type'] == 'row']
+        cells = [node for node in nodes if node['node_type'] == 'cell']
+        self.assertEqual(len(columns), 4)
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(len(cells), 12)
+        self.assertTrue(all(node['parent_node_id'] == table['id'] for node in columns + rows))
+        engineering_row = next(node for node in rows if node['locator']['row'] == 2)
+        engineering_cells = [node for node in cells if node['parent_node_id'] == engineering_row['id']]
+        budget_cell = next(node for node in engineering_cells if node['locator']['header'] == 'Budget')
+        self.assertEqual(budget_cell['content'], '250000')
+        self.assertEqual(budget_cell['locator']['column_label'], 'C')
+        self.assertEqual(budget_cell['locator']['row'], 2)
+        self.assertEqual(budget_cell['parent_node_id'], engineering_row['id'])
+        blank_owner = next(node for node in cells if node['locator']['row'] == 4 and node['locator']['header'] == 'Owner')
+        self.assertEqual(blank_owner['content'], '')
+        self.assertTrue(blank_owner['locator']['is_empty'])
+        matches = self.store.search('250000')
+        self.assertTrue(any(item['locator']['type'] == 'csv_cell' and item['content'] == '250000' for item in matches))
+        self.assertEqual(self.store.read_source_bytes(result['source_version_id']), content)
+        duplicate = self.store.ingest('portfolio.csv', content, self._extract('portfolio.csv', content))
+        self.assertFalse(duplicate['created_new_version'])
+        self.assertEqual(duplicate['source_version_id'], result['source_version_id'])
+
+    def test_csv_cell_correction_refreshes_row_search_and_can_preserve_a_blank(self):
+        content = b'Department,Owner,Budget\nEngineering,Asha,250000\n'
+        result = self.store.ingest('budget.csv', content, self._extract('budget.csv', content))
+        nodes = self.store.list_nodes(result['source_version_id'])
+        budget_cell = next(node for node in nodes if node['node_type'] == 'cell' and node['locator']['header'] == 'Budget')
+        row = next(node for node in nodes if node['node_type'] == 'row')
+
+        self.store.edit_node(budget_cell['id'], '260000', 'Corrected approved budget')
+        updated = {node['id']: node for node in self.store.list_nodes(result['source_version_id'])}
+        self.assertEqual(updated[budget_cell['id']]['content'], '260000')
+        self.assertEqual(updated[row['id']]['origin'], 'user_edited')
+        self.assertIn('Budget: 260000', updated[row['id']]['content'])
+        self.assertNotIn('250000', updated[row['id']]['content'])
+        self.assertEqual(self.store.search('250000'), [])
+        self.assertTrue(any(item['locator']['type'] == 'csv_cell' for item in self.store.search('260000')))
+
+        self.store.edit_node(budget_cell['id'], '', 'Marked the budget cell as intentionally blank')
+        blank = next(node for node in self.store.list_nodes(result['source_version_id']) if node['id'] == budget_cell['id'])
+        updated_row = next(node for node in self.store.list_nodes(result['source_version_id']) if node['id'] == row['id'])
+        self.assertEqual(blank['content'], '')
+        self.assertTrue(blank['locator']['is_empty'])
+        self.assertIn('Budget: [blank]', updated_row['content'])
+        self.assertEqual(self.store.search('260000'), [])
+        self.assertEqual(self.store.read_source_bytes(result['source_version_id']), content)
+
     def test_reactivating_a_previous_version_restores_its_index(self):
         old_bytes = b'The approved date is 12 May.'
         new_bytes = b'The approved date is 19 May.'

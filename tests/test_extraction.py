@@ -35,6 +35,32 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(block['markdown_range']['end'], len(first['markdown']))
         self.assertEqual(block['markdown_range']['unit'], 'unicode_code_points')
 
+    def test_csv_exposes_stable_native_headers_and_logical_record_coordinates(self):
+        source = 'Name,Name,Notes\nAsha,,"Line one\nLine two"\nZoë,Owner,"quoted, value"\n'.encode('utf-8')
+        result = extract_document('people.csv', source)
+        table = result['evidence']['tables'][0]
+        self.assertEqual([header['label'] for header in table['headers']], ['Name', 'Name (2)', 'Notes'])
+        self.assertEqual([header['column_label'] for header in table['headers']], ['A', 'B', 'C'])
+        self.assertEqual(table['rows'][0]['row_number'], 2)
+        self.assertEqual(table['rows'][0]['cells'][1]['value'], '')
+        self.assertTrue(table['rows'][0]['cells'][1]['is_empty'])
+        self.assertEqual(table['rows'][0]['cells'][2]['value'], 'Line one\nLine two')
+        self.assertEqual(table['rows'][1]['cells'][0]['value'], 'Zoë')
+        self.assertEqual(table['rows'][1]['cells'][2]['value'], 'quoted, value')
+        self.assertEqual(table['table_key'], extract_document('renamed.csv', source)['evidence']['tables'][0]['table_key'])
+
+    def test_csv_native_cell_index_cap_keeps_markdown_table_and_surfaces_warning(self):
+        source = b'Name,Value\nA,100\nB,200\n'
+        with patch.object(documents_module, 'MAX_NATIVE_TABLE_CELLS', 2):
+            result = extract_document('bounded.csv', source)
+        table = result['evidence']['tables'][0]
+        self.assertEqual(table['indexed_cell_count'], 2)
+        self.assertTrue(table['cells_truncated'])
+        self.assertTrue(table['locator']['cells_truncated'])
+        self.assertIn('B', result['markdown'])
+        self.assertIn('200', result['markdown'])
+        self.assertTrue(any('Native CSV cell indexing capped' in warning for warning in result['warnings']))
+
     def test_pdf_evidence_blocks_anchor_each_page_to_markdown_ranges(self):
         document = fitz.open()
         first_page = document.new_page()

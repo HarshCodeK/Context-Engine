@@ -24,6 +24,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import { NativeTablePreview } from '@/features/workspace/NativeTablePreview'
 import {
   editKnowledgeNode,
   getHealth,
@@ -44,7 +45,12 @@ function errorMessage(error: unknown) {
   return error instanceof Error ? error.message : 'Something went wrong. Please try again.'
 }
 
-function locatorLabel(locator: Record<string, string | number>) {
+function locatorLabel(locator: Record<string, string | number | boolean>) {
+  if (locator.type === 'csv_document') return 'CSV source'
+  if (locator.type === 'csv_table') return `CSV table · ${Number(locator.row_count ?? 0).toLocaleString()} records · ${locator.column_count ?? 0} columns`
+  if (locator.type === 'csv_column') return `CSV · Column ${locator.column_label ?? locator.column ?? ''} · ${locator.header_label ?? 'Header'}`
+  if (locator.type === 'csv_row') return `CSV · Record ${locator.row ?? ''}`
+  if (locator.type === 'csv_cell') return `CSV · Record ${locator.row ?? ''} · ${locator.column_label ?? ''} / ${locator.header_label ?? 'Cell'}`
   const type = String(locator.type ?? 'document section').replaceAll('_', ' ')
   const details = Object.entries(locator)
     .filter(([key]) => !['type', 'markdown_start', 'markdown_end'].includes(key))
@@ -126,6 +132,12 @@ function App() {
 
   const activeSource = sources.find((source) => source.id === activeSourceId) ?? null
   const activeNode = nodes.find((node) => node.id === activeNodeId) ?? nodes[0] ?? null
+  const hasNativeCsvTable = nodes.some((node) => node.node_type === 'table' && node.locator.type === 'csv_table')
+  const navigableNodes = hasNativeCsvTable ? nodes.filter((node) => !['row', 'cell', 'column'].includes(node.node_type)) : nodes
+  const tableCounts = {
+    records: nodes.filter((node) => node.node_type === 'row').length,
+    cells: nodes.filter((node) => node.node_type === 'cell').length,
+  }
   const selectedItems = useMemo(() => Object.values(selectedEvidence), [selectedEvidence])
   const nodeDepths = useMemo(() => {
     const parents = new Map(nodes.map((node) => [node.id, node.parent_node_id]))
@@ -266,7 +278,7 @@ function App() {
   }
 
   async function saveNode() {
-    if (!activeNode || !activeSource?.source_version_id || saving || !draft.trim()) return
+    if (!activeNode || !activeSource?.source_version_id || saving || (activeNode.node_type !== 'cell' && !draft.trim())) return
     setSaving(true)
     try {
       await editKnowledgeNode(activeNode.id, draft, 'Edited in the Context Studio knowledge workspace')
@@ -423,7 +435,7 @@ function App() {
                     <>
                       <div className="living-document-meta">
                         <span><IconFingerprint size={14} /> SHA-256 {activeSource.content_sha256?.slice(0, 18)}…</span>
-                        <span>{nodes.length} evidence blocks</span>
+                        <span>{nodes.length.toLocaleString()} knowledge nodes{hasNativeCsvTable ? ` · ${tableCounts.records.toLocaleString()} records · ${tableCounts.cells.toLocaleString()} cells` : ''}</span>
                       </div>
                       {versions.length > 1 && (
                         <div className="living-version-strip">
@@ -438,8 +450,9 @@ function App() {
                           <small>{activeDigest.summary_characters.toLocaleString()} / {activeDigest.input_characters.toLocaleString()} characters | {activeDigest.evidence.length} cited passages | no model call</small>
                         </div>
                       )}
+                      <NativeTablePreview nodes={nodes} activeNodeId={activeNode?.id ?? null} onSelect={selectNode} />
                       <div className="living-node-tabs" aria-label="Document structure">
-                        {nodes.map((node, index) => (
+                        {navigableNodes.map((node, index) => (
                           <button key={node.id} data-depth={Math.min(nodeDepths.get(node.id) ?? 0, 6)} data-node-type={node.node_type} className={node.id === activeNode?.id ? 'is-active' : ''} onClick={() => selectNode(node)}>
                             <span>{String(index + 1).padStart(2, '0')}</span>{locatorLabel(node.locator)}
                           </button>
@@ -452,7 +465,7 @@ function App() {
                             {!editing ? (
                               <Button size="sm" variant="outline" onClick={() => { setDraft(activeNode.content); setEditing(true) }}><IconPencil size={14} /> Edit knowledge</Button>
                             ) : (
-                              <div className="living-editor-actions"><Button size="sm" variant="ghost" onClick={() => { setDraft(activeNode.content); setEditing(false) }}>Cancel</Button><Button size="sm" onClick={() => void saveNode()} disabled={saving || !draft.trim()}>{saving ? 'Saving…' : 'Save correction'}</Button></div>
+                              <div className="living-editor-actions"><Button size="sm" variant="ghost" onClick={() => { setDraft(activeNode.content); setEditing(false) }}>Cancel</Button><Button size="sm" onClick={() => void saveNode()} disabled={saving || (activeNode.node_type !== 'cell' && !draft.trim())}>{saving ? 'Saving…' : 'Save correction'}</Button></div>
                             )}
                           </div>
                           {editing ? <textarea className="living-editor-textarea" value={draft} onChange={(event) => setDraft(event.target.value)} aria-label="Edit canonical knowledge text" /> : <pre className="living-node-content">{activeNode.content}</pre>}
